@@ -23,7 +23,54 @@ import { NotImplementedError } from '../extensions/index.js';
  *  [1, 1, 1]
  * ]
  */
-export default function minesweeper (/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function minesweeper(matrix) {
+    // throw new NotImplementedError('Not implemented');
+    // remove line with error and write your code here
+    let resArr = [];
+    for (let i = 0; i < matrix.length; i++) {
+        resArr[i] = [];
+        const arr = matrix[i];
+        for (let j = 0; j < arr.length; j++) {
+            // const el = arr[j];
+            let sum = 0;
+            try {
+                sum += (matrix[i - 1][j - 1]) ? 1 : 0;
+            } catch (err) {}
+            try {
+                sum += (matrix[i - 1][j]) ? 1 : 0;
+            } catch (err) {}
+            try {
+                sum += (matrix[i - 1][j + 1]) ? 1 : 0;
+            } catch (err) {}
+            try {
+                sum += (matrix[i][j - 1]) ? 1 : 0;
+            } catch (err) {}
+            try {
+                sum += (matrix[i][j + 1]) ? 1 : 0;
+            } catch (err) {}
+            try {
+                sum += (matrix[i + 1][j - 1]) ? 1 : 0;
+            } catch (err) {}
+            try {
+                sum += (matrix[i + 1][j]) ? 1 : 0;
+            } catch (err) {}
+            try {
+                sum += (matrix[i + 1][j + 1]) ? 1 : 0;
+            } catch (err) {}
+            resArr[i][j] = sum;
+
+        }
+    }
+    return resArr;
 }
+let a = minesweeper([
+    [true, false, false],
+    [false, true, false],
+    [false, false, false],
+]);
+// [
+//     [1, 2, 1],
+//     [2, 1, 1],
+//     [1, 1, 1],
+
+console.log(a);
